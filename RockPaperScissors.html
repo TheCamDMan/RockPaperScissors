@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <title>
+
+    </title>
+
+    <script>
+        function computerPlay(min, max) {
+            n = Math.floor(Math.random() * Math.floor(max));
+            if (n == 0) {
+                compMove = "rock";
+            }
+            else if (n == 1) {
+                compMove = "paper";
+            }
+            else {
+                compMove = "scissors";
+            }
+            return compMove;
+        }
+
+        function playRound(computerSelection, playerSelection) {
+            playerSelection = playerSelection.toLowerCase();
+
+            if (computerSelection == "rock" && playerSelection == "scissors") {
+                return "You Lose! Rock beats Scissors";
+            }
+            else if (computerSelection == "paper" && playerSelection == "rock") {
+                return "You Lose! Paper beats Rock";
+            }
+            else if (computerSelection == "scissors" && playerSelection == "paper") {
+                return "You Lose! Scissors beats Paper";
+            }
+            else if (computerSelection == playerSelection) {
+                return "tie";
+            }
+            else {
+                return "Winner!"
+            }
+        }
+        
+        do {
+            playerSelection = window.prompt("rock paper or scissors");
+            results = playRound(computerPlay(0, 3), playerSelection);
+        }
+        while (results == "tie");
+        
+        console.log(results);
+        
+    </script>
+
+</html>
