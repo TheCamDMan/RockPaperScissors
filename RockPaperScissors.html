@@ -3,6 +3,40 @@
 
     <head>
         <meta charset="UTF-8">
+        <style>
+
+            #buttons {
+                margin-left: 600px;
+            }
+
+            #jumboTron {
+                background-color: black;
+                color: white;
+                text-align: center;
+                text-shadow: 2px 2px 2px coral;
+            }
+
+            #rock {
+                background: rgba(136, 26, 26, 0.842);
+                border-radius: 50%;
+
+            }
+
+            #paper {
+                background: whitesmoke;
+                border-radius: 50%;
+            }
+
+            #scissors {
+                background: rgba(151, 150, 150, 0.842);
+                border-radius: 50%;
+            }
+
+            #theGame {
+                background: rgba(159, 108, 207, 0.603);
+            }
+
+        </style>
     </head>
     <title>
 
@@ -11,9 +45,11 @@
     <body>
         <h1 id="jumboTron">You ready for some Rock, Paper, Scissors?</h1>
         <h2 id="computer"></h2>
-        <button type="button" onclick="game('rock')" id="rock">Rock</button>
-        <button type="button" onclick="game('paper')" id="paper">Paper</button>
-        <button type="button" onclick="game('scissors')" id="scissors">Scissors</button>
+        <div id="buttons">
+            <button type="button" onclick="game('rock')" id="rock">Rock</button>
+            <button type="button" onclick="game('paper')" id="paper">Paper</button>
+            <button type="button" onclick="game('scissors')" id="scissors">Scissors</button>
+        </div>
         <p id="score1"></p>
         <p id="score2"></p>
         <button type="button" onclick="reset()" id="theGame">Reset</button>
@@ -60,7 +96,6 @@
             }
             else if (computerMove == playerSelection) {
                 document.getElementById("jumboTron").innerHTML = "tie";
-                i--;
             }
             else {
                 playerPoints++;
