@@ -11,52 +11,41 @@
     <body>
         <h1 id="jumboTron">You ready for some Rock, Paper, Scissors?</h1>
         <h2 id="computer"></h2>
-        <button type="button" id="rock">Rock</button>
-        <button type="button" id="paper">Paper</button>
-        <button type="button" id="scissors">Scissors</button>
+        <button type="button" onclick="game('rock')" id="rock">Rock</button>
+        <button type="button" onclick="game('paper')" id="paper">Paper</button>
+        <button type="button" onclick="game('scissors')" id="scissors">Scissors</button>
         <p id="score1"></p>
         <p id="score2"></p>
-        <p id="theGame"></p>
+        <button type="button" onclick="reset()" id="theGame">Reset</button>
     </body>
 
     <script>
         // sets global variables for points
+        let counter = 0;
         let playerPoints = 0;
         let computerPoints = 0;
-        let playerMove;
 
-        // see below for functions
-        game();
-        
-        if (playerPoints > 2) {
-            document.getElementById("theGame").innerHTML = "You Win The Game!";
-        }
-        else {
-            document.getElementById("theGame").innerHTML = "You Lose The Game!";
-        }
-        
         
         // generates the computer's move
+
         function computerPlay(min, max) {
             let compMove;
             let n = Math.floor(Math.random() * Math.floor(max));
             if (n == 0) {
-                compMove = "rock";
+                compMove = "rock";paper
             }
             else if (n == 1) {
                 compMove = "paper";
             }
             else {
                 compMove = "scissors";
-            }
+            } 
             document.getElementById("computer").innerHTML = "Computer plays: " + compMove;
             return compMove;
         }
 
         // corrects for case and plays one round
         function playRound(computerMove, playerSelection) {
-            playerSelection = playerSelection.toLowerCase();
-            
             if (computerMove == "rock" && playerSelection == "scissors") {
                 document.getElementById("jumboTron").innerHTML = "You Lose! Rock beats Scissors";
                 computerPoints++;
@@ -81,14 +70,22 @@
             document.getElementById("score2").innerHTML = "Computer Score: " + computerPoints + "\n";
         }
 
-        // plays the game 5 times
-        function game() {
-            for (i = 0; i < 5; i++) {
-                if (playerPoints < 3 && computerPoints < 3) {
-                    let playerMove = window.prompt("rock, paper, scissors", "rock");
-                    playRound(computerPlay(0, 3), playerMove);
-                }
+        function game(button) {
+            playRound(computerPlay(0, 3), button);
+            if (computerPoints == 5) {
+                window.alert("You Lose");
             }
+            else if (playerPoints == 5) {
+                window.alert("Winner!");
+            }
+        }
+
+        function reset() {
+            playerPoints = 0;
+            computerPoints = 0;
+            document.getElementById("score1").innerHTML = "Player Score: " + playerPoints + "\n";
+            document.getElementById("score2").innerHTML = "Computer Score: " + computerPoints + "\n";
+            return;
         }
 
     </script>
